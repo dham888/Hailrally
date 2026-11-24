@@ -52,7 +52,7 @@ body{background:var(--bg);color:var(--fg);font-family:Tajawal,system-ui,sans-ser
 .grp{display:flex;gap:10px;align-items:flex-end;pointer-events:auto}
 .tb{width:72px;height:72px;border-radius:50%;background:rgba(246,234,216,.2);border:2px solid rgba(246,234,216,.5);color:var(--fg);font-size:1.6rem;display:flex;align-items:center;justify-content:center;font-weight:900}
 .tb.s{width:54px;height:54px;font-size:.8rem}
-.tb.on{background:rgba(240,144,44,.75)}
+.tb.on{background:rgba(240,144,44,.75)}.gcl{flex-direction:column;align-items:flex-start;gap:10px}#gbox[hidden]{display:none}#gbox .tb{width:62px;height:62px;border-radius:16px;font-size:1.5rem;flex-direction:column;line-height:1}#gbox .tb small{font-size:.6rem;font-weight:700;margin-top:2px}@media (orientation:portrait){#gbox{margin-bottom:90px}}
 #sys{position:fixed;top:calc(max(6px,env(safe-area-inset-top,0px)) + 176px);left:max(16px,env(safe-area-inset-left,0px));z-index:4;display:flex;flex-direction:column;gap:6px}
 .ib{background:rgba(22,15,10,.66);color:var(--fg);border:0;border-radius:10px;width:40px;height:40px;font-size:1.1rem;cursor:pointer}
 #end{position:fixed;inset:0;z-index:6;background:rgba(22,15,10,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:16px}
@@ -82,7 +82,7 @@ table{border-collapse:collapse;min-width:260px}td{padding:6px 14px;border-bottom
 </div>
 <div id="msg"></div><div id="sub"></div>
 <div id="sys" hidden><button class="ib" id="bMute" aria-label="الصوت">🔊</button><button class="ib" id="bCam" aria-label="الكاميرا">🎥</button><button class="ib" id="bQuit" aria-label="خروج">✕</button></div>
-<div id="touch" class="pad"><div class="grp"><div class="tb" id="bL">◀</div><div class="tb" id="bR">▶</div></div><div class="grp"><div class="tb s" id="bH">فرملة يد</div><div class="tb s" id="bB">■</div><div class="tb" id="bG">▲</div></div></div>
+<div id="touch" class="pad"><div class="grp gcl"><div class="grp" id="gbox" hidden><div class="tb s" id="bGD">−<small>خفض</small></div><div class="tb s" id="bGU">+<small>رفع</small></div></div><div class="grp"><div class="tb" id="bL">◀</div><div class="tb" id="bR">▶</div></div></div><div class="grp"><div class="tb s" id="bH">فرملة يد</div><div class="tb s" id="bB">■</div><div class="tb" id="bG">▲</div></div></div>
 <div id="menu" class="pad">
  <div class="head"><div class="lg"><img id="logoImg" alt="شعار رالي حائل"></div><div><div class="ttl">رالي حائل</div><div class="cred">تصميم المهندس دهام عيد عبدالله الشمري</div></div></div>
  <div class="sheet pad">
@@ -104,7 +104,7 @@ table{border-collapse:collapse;min-width:260px}td{padding:6px 14px;border-bottom
  </div>
 </div>
 <div id="viewBar" hidden class="pad"><div class="row" id="vCols"></div><button class="btn alt" id="vShot">📷 حفظ صورة</button><button class="btn" id="vBack">رجوع للقائمة</button><div class="hint">اسحب للتدوير · قرّب بإصبعين أو بعجلة الفأرة</div></div><div id="vName" hidden></div>
-<div id="pause" hidden><h1>إيقاف مؤقت</h1><button class="btn" id="pResume">متابعة</button><button class="btn alt" id="pFS" hidden>⛶ ملء الشاشة</button><button class="btn alt" id="pShot">📷 حفظ صورة</button><button class="btn alt" id="pRestart">إعادة المرحلة</button><button class="btn alt" id="pQuit">القائمة</button></div>
+<div id="pause" hidden><h1>إيقاف مؤقت</h1><button class="btn" id="pResume">متابعة</button><button class="btn alt" id="pFS" hidden>⛶ ملء الشاشة</button><button class="btn alt" id="pGear">⚙ القير: أوتوماتيك</button><button class="btn alt" id="pShot">📷 حفظ صورة</button><button class="btn alt" id="pRestart">إعادة المرحلة</button><button class="btn alt" id="pQuit">القائمة</button></div>
 <div id="rpBars" hidden><i></i><i></i></div><div id="rpBar" hidden><button class="btn alt" id="rpCam">🎥</button><button class="btn" id="rpX">✕ إغلاق الإعادة</button></div>
 <div id="end" hidden><h1 id="endT"></h1><div id="endB"></div><div class="cred">تصميم المهندس دهام عيد عبدالله الشمري</div><button class="btn" id="nextB" hidden>المرحلة التالية ◀</button><button class="btn alt" id="rpB">🎬 إعادة السباق بالكاميرات</button><button class="btn alt" id="vidX" hidden>📹 تسجيل فيديو للسباق</button><button class="btn" id="vidB" hidden>⬇ حفظ / مشاركة الفيديو</button><button class="btn alt" id="shareB">نسخ النتيجة ومشاركتها</button><button class="btn" id="again">القائمة</button></div>
 <div id="err" style="display:none;position:fixed;left:8px;right:8px;bottom:8px;z-index:99;background:#7a1d12;color:#fff;padding:8px;border-radius:8px;font:12px monospace;direction:ltr;white-space:pre-wrap"></div><script>window.addEventListener("error",function(e){var el=document.getElementById("err");if(el){el.style.display="block";el.textContent="Error: "+(e.message||"")+" line "+(e.lineno||"")}});</script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script>
@@ -178,7 +178,7 @@ function bushAt(i,j){const k=i+"_"+j;if(bc.has(k))return bc.get(k);let o=null;
 function mulberry(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function pathOf(def,seed){const rnd=mulberry(seed*7+3),w=[{x:0,z:0}];let th=rnd()*6.28,x=0,z=0,turn=0;for(let k=0;k<def.legs;k++){turn=turn*.45+(rnd()-.5)*1.7;th+=turn;const L=def.legLen[0]+rnd()*(def.legLen[1]-def.legLen[0]);x+=Math.sin(th)*L;z+=Math.cos(th)*L;w.push({x,z})}return w}
 const seedOf=def=>def.daily?DAY:def.sd||(def.id==="desert"?12345:777);
-let FREE=false;function jfarF(x,z,m){return ST.jumps.every(q=>Math.hypot(q.x-x,q.z-z)>m)}
+let FREE=false,MAN=false;function jfarF(x,z,m){return ST.jumps.every(q=>Math.hypot(q.x-x,q.z-z)>m)}
 function genStage(def,seed){
  S=def;S.seed=seed;rc.clear();bc.clear();ST=null;S.h0=0;S.h0=hRaw(0,0);
  const rnd=mulberry(seed*7+3),wps=[{x:0,z:0}];let th=rnd()*6.28,x=0,z=0,turn=0;
@@ -218,7 +218,11 @@ const CARS=[
  {n:"الشاص 79 رالي",cls:"T2 لاندكروزر 79 · نسخة رالي",sub:"عزم هائل · إطاران احتياطيان",c:0xf0efe9,sp:45,pw:15.6,hd:.97,gr:1.1,dr:1,wb:3.2,tw:1.92,wr:.48,sp1:"سلمى",num:79,body:"lc79r",liv:"gr",rim:0x1b1c1e,mass:2250},
  {n:"هنتر T1+",cls:"T1+ رالي ريد · 4×4",sub:"V6 توربو · تعليق 350 مم · الأسرع",c:0xc8161d,sp:51,pw:17,hd:1.12,gr:1.1,dr:1,wb:3.0,tw:2.1,wr:.5,sp1:"أجا",num:21,body:"hunter",liv:"hu",rim:0x1b1c1e,mass:2000}];
 class Veh{
- constructor(d,x,z,h,press){Object.assign(this,{press:press===undefined?1:press,d,x,z,h,y:height(x,z),vx:0,vy:0,vz:0,ground:true,pitch:0,roll:0,pv:0,rv:0,eng:1,tyre:[1,1,1,1],vf:0,vl:0,yawr:0,gear:1,rpm:.15,steer:0,spin:0,surf:0,air:0,ev:[],wc:[0,0,0,0],bob:0,bobV:0,rep:0,slip:0,ax:0,n:{x:0,y:1,z:0},t:{x:0,y:0,z:1},s:{x:1,y:0,z:0},hit:0})}
+ constructor(d,x,z,h,press){Object.assign(this,{press:press===undefined?1:press,d,x,z,h,y:height(x,z),vx:0,vy:0,vz:0,ground:true,pitch:0,roll:0,pv:0,rv:0,eng:1,tyre:[1,1,1,1],vf:0,vl:0,yawr:0,gear:1,mg:0,man:false,shiftT:0,lim:0,rpm:.15,steer:0,spin:0,surf:0,air:0,ev:[],wc:[0,0,0,0],bob:0,bobV:0,rep:0,slip:0,ax:0,n:{x:0,y:1,z:0},t:{x:0,y:0,z:1},s:{x:1,y:0,z:0},hit:0})}
+ tops(){return [.2,.4,.6,.8,1.05].map(g=>g*this.d.sp)}
+ shift(dir){if(!this.man)return 0;const tp=this.tops(),g=this.mg,ng=Math.max(0,Math.min(4,g+dir));if(ng===g){this.ev.push({t:"gnone"});return 0}
+  if(dir<0&&this.vf>tp[ng]*1.4){this.ev.push({t:"grej"});return -1}
+  this.mg=ng;this.shiftT=.22;this.ev.push({t:"gshift",d:dir});return 1}
  flats(){return this.tyre.filter(t=>t<.5).length}
  punct(i){if(this.tyre[i]>.5){this.tyre[i]=0;this.ev.push({t:"punct"})}}
  needRepair(){return this.eng<.995||this.flats()>0}
@@ -236,9 +240,11 @@ class Veh{
   if(this.ground){
    const k=rockK(this.x,this.z);this.surf=k;const fl=this.flats();
    const sp=d.sp*(1-.16*(1-k))*(1-.08*fl),eff=.35+.65*this.eng,th=inp.th,br=inp.br;
-   if(th>0){const r=Math.max(0,1-Math.pow(Math.max(vf,0)/sp,2.2));vf+=th*d.pw*eff*r*(1-.12*(1-k))*lerp(d.dr*[1.1,1,.9][this.press],1,k)*dt;if(vf<-.5)vf+=th*30*dt}
+   let thE=th;if(this.man){if(this.shiftT>0){this.shiftT-=dt;thE=0}else if(vf>=-.5){const tp=this.tops()[this.mg],rn=Math.max(vf,0)/tp;thE=rn>1?0:th*(rn<.45?.55+.45*rn/.45:1)*(this.mg===0?1.12:1)}}
+   if(th>0){const r=Math.max(0,1-Math.pow(Math.max(vf,0)/sp,2.2));vf+=thE*d.pw*eff*r*(1-.12*(1-k))*lerp(d.dr*[1.1,1,.9][this.press],1,k)*dt;if(vf<-.5)vf+=th*30*dt}
    if(br>0){if(vf>.8)vf-=Math.min(vf,br*36*(this.d.bk||1)*(1-.22*WET)*dt);else if(th===0)vf=Math.max(-sp*.3,vf-br*d.pw*.5*dt)}
    if(inp.hb)vf-=Math.sign(vf)*Math.min(Math.abs(vf),9*dt);
+   if(this.man&&vf>1){const tp=this.tops()[this.mg];if(th===0)vf-=Math.min(vf,(4-this.mg)*.5*dt+.25*dt);if(vf>tp*1.02)vf-=Math.min(vf-tp,(vf-tp)*2.4*dt+.6*dt)}
    if(th===0&&br===0){vf-=Math.sign(vf)*Math.min(Math.abs(vf),lerp(3.4,1.3,k)*dt)}
    vf-=vf*Math.abs(vf)*.0009*dt;if(fl)vf-=Math.sign(vf)*Math.min(Math.abs(vf),fl*1.4*dt);
    let gl=lerp(4.4*[1.15,1,.9][this.press],8*[.95,1,1.06][this.press],k)*d.gr*(1-.1*fl);if(inp.hb)gl*=.3;gl*=1-.3*th*Math.abs(inp.st)*Math.min(1,Math.abs(vf)/22);gl*=1-.2*WET;
@@ -267,8 +273,10 @@ class Veh{
   this.pv+=((pT-this.pitch)*60-this.pv*11)*dt;this.pitch+=this.pv*dt;this.rv+=((rT-this.roll)*60-this.rv*11)*dt;this.roll+=this.rv*dt;
   this.bobV+=(-90*this.bob-9*this.bobV)*dt;this.bob+=this.bobV*dt;this.bob=clamp(this.bob,-.35,.3);
   // علبة السرعات والدوران
-  const tops=[.2,.4,.6,.8,1.05].map(g=>g*d.sp);let g=0;while(g<4&&Math.abs(vv)>tops[g])g++;
-  const lo=g?tops[g-1]:0;this.gear=vv<-.5?-1:g+1;this.rpmT=clamp(.18+.8*(Math.abs(vv)-lo*.8)/(tops[g]-lo*.8),.16,1);
+  const tops=[.2,.4,.6,.8,1.05].map(g=>g*d.sp);
+  if(this.man){if(this.ground&&Math.abs(vv)<2&&inp.th===0&&this.shiftT<=0)this.mg=0;const tp=tops[this.mg],rn=Math.max(0,vv)/tp;this.gear=vv<-.5?-1:this.mg+1;this.lim=(rn>.985&&inp.th>0&&vv>0)?1:0;this.rpmT=clamp(.18+.82*rn,.16,1)}
+  else{let g=0;while(g<4&&Math.abs(vv)>tops[g])g++;
+  const lo=g?tops[g-1]:0;this.gear=vv<-.5?-1:g+1;this.rpmT=clamp(.18+.8*(Math.abs(vv)-lo*.8)/(tops[g]-lo*.8),.16,1);this.mg=Math.min(4,g);this.lim=0}
   this.rpm+=(this.rpmT+(inp.th>0?.04:-.05)-this.rpm)*Math.min(1,dt*9);
   this.spin+=vv/d.wr*dt;
  }
@@ -931,7 +939,8 @@ function drawGauge(v,th){
  const p=clamp(v.rpm,0,1),e=a0+(a1-a0)*p;c.strokeStyle=p>.88?"#e5513a":"#f0902c";c.beginPath();c.arc(cx,cy,r,a0,e);c.stroke();
  c.fillStyle="#f6ead8";c.textAlign="center";c.font="900 74px Tajawal,sans-serif";c.fillText(Math.round(Math.abs(v.vf)*3.6),cx,cy+14);
  c.font="700 20px Tajawal,sans-serif";c.fillStyle="#c2aa8c";c.fillText("كم/س",cx,cy+40);
- c.font="900 34px Tajawal,sans-serif";c.fillStyle="#f0902c";c.fillText(v.gear<0?"R":v.gear,cx,cy-52)}
+ const hot=v.man&&(v.lim||v.rpm>.93);c.font="900 34px Tajawal,sans-serif";c.fillStyle=hot?"#ff3b2a":"#f0902c";c.fillText(v.gear<0?"R":v.gear,cx,cy-52);
+ if(v.man){c.font="700 15px Tajawal,sans-serif";c.fillStyle="#c2aa8c";c.fillText("يدوي",cx+44,cy-58);if(v.rpm>.9&&!v.lim&&v.gear>0&&v.gear<5){c.fillStyle="#ff3b2a";c.font="900 22px Tajawal,sans-serif";c.fillText("▲",cx,cy-86)}if(v.lim){c.fillStyle="#ff3b2a";c.font="900 18px Tajawal,sans-serif";c.fillText("حد الدوران",cx,cy-86)}}}
 function drawDmg(v){
  const c=dC;c.clearRect(0,0,168,240);c.lineWidth=3;
  c.strokeStyle="#f6ead8";c.fillStyle="rgba(246,234,216,.14)";c.beginPath();c.roundRect?c.roundRect(48,40,72,160,16):c.rect(48,40,72,160);c.fill();c.stroke();
@@ -1062,9 +1071,13 @@ let stuckT=0;
 // ----- الإعدادات -----
 let quality="auto";
 function applyQuality(){sun.castShadow=quality!=="low";dprCur=quality==="low"?Math.min(.75,dprMax):dprMax;applyDPR()}
-function loadSettings(){try{const j=JSON.parse(localStorage.getItem("hail-set")||"null");if(j){quality=j.q||"auto";AU.voice=j.v!==false}}catch(e){}applyQuality()}
-function saveSettings(){try{localStorage.setItem("hail-set",JSON.stringify({q:quality,v:AU.voice!==false}))}catch(e){}}
+function loadSettings(){try{const j=JSON.parse(localStorage.getItem("hail-set")||"null");if(j){quality=j.q||"auto";AU.voice=j.v!==false;MAN=!!j.m}}catch(e){}applyQuality()}
+function saveSettings(){try{localStorage.setItem("hail-set",JSON.stringify({q:quality,v:AU.voice!==false,m:MAN}))}catch(e){}}
+function applyMan(){try{const g=$("gbox");if(g)g.hidden=!MAN;const b=$("pGear");if(b)b.textContent="⚙ القير: "+(MAN?"عادي (يدوي)":"أوتوماتيك")}catch(e){}}
+function toggleMan(inRace){MAN=!MAN;saveSettings();applyMan();if(typeof P!=="undefined"&&P&&P.v){P.v.man=MAN;if(!MAN)P.v.mg=Math.min(4,P.v.mg)}buildSettings();if(inRace)toast(MAN?"القير عادي (يدوي): E / Z أو أزرار + −  — اضغط T للرجوع للأوتوماتيك":"القير أوتوماتيك",3200)}
+function gearFx(r){if(r===1)auBeep(300,.05,.12);else if(r===-1){auBeep(170,.16,.3);toast("السرعة عالية للخفض — خفّف أولاً",1400)}else if(r===0)auBeep(240,.04,.1)}
 function buildSettings(){const r=$("setRow");r.innerHTML="";
+ {const m=document.createElement("button");m.className="chip"+(MAN?" on":"");m.innerHTML="<b>ناقل الحركة</b><small>"+(MAN?"عادي (يدوي) · E رفع / Z خفض":"أوتوماتيك")+"</small>";m.onclick=()=>toggleMan(false);r.appendChild(m)}
  [["auto","جودة تلقائية"],["low","جودة منخفضة"],["high","جودة عالية"]].forEach(([k,n])=>{const b=document.createElement("button");b.className="chip"+(quality===k?" on":"");b.innerHTML="<b>"+n+"</b>";b.onclick=()=>{quality=k;saveSettings();applyQuality();buildSettings()};r.appendChild(b)});
  const v=document.createElement("button");v.className="chip"+(AU.voice!==false?" on":"");v.innerHTML="<b>المساعد الصوتي</b><small>"+(AU.voice!==false?"يعمل":"متوقف")+"</small>";v.onclick=()=>{AU.voice=AU.voice===false;saveSettings();buildSettings()};r.appendChild(v);
  if(fsOK()){const f=document.createElement("button");f.className="chip"+(isFS()?" on":"");f.innerHTML="<b>ملء الشاشة</b><small>"+(isFS()?"مفعّل (F)":"اضغط (F)")+"</small>";f.onclick=()=>toggleFS();r.appendChild(f)}
@@ -1216,7 +1229,7 @@ let champ=null;const PTS=[25,20,16,13,11,10,9,8,7,6,5,4,3,2,1];const FIELDS=[0,4
 let PNAME="";try{PNAME=localStorage.getItem("hail-name")||""}catch(e){}
 const PN=()=>(PNAME||"").trim()||"أنت";
 const sel={car:0,mode:0,track:0,time:1,press:1,field:2,diff:1};let pen=0,zoneNow=null,zoneOver=false,zoneSaid=null;const DRV=["فهد","سلطان","نواف","ماجد","تركي","خالد","بدر","مشعل"];let prevState="run",camYs=0,fpsAcc=0,fpsN=0;let state="menu",racers=[],P=null,pw=1,clock=0,cdown=0,camMode=0,ch=0,shake=0,preview=null,acc=0,orbit=0,stIn=0,callN=0,lastAnn=-1;
-const keys={},tin={L:0,R:0,G:0,B:0,H:0},rep={on:0},fmt=s=>{const t=Math.round(Math.max(0,s)*10),m=Math.floor(t/600);return m+":"+((t%600)/10).toFixed(1).padStart(4,"0")};
+const keys={},gq={u:0,d:0},tin={L:0,R:0,G:0,B:0,H:0},rep={on:0},fmt=s=>{const t=Math.round(Math.max(0,s)*10),m=Math.floor(t/600);return m+":"+((t%600)/10).toFixed(1).padStart(4,"0")};
 $("logoImg").src=LOGO_DATA;
 const _th={};
 function trackKm(def){const w=pathOf(def,seedOf(def));let L=0;for(let i=1;i<w.length;i++)L+=Math.hypot(w[i].x-w[i-1].x,w[i].z-w[i-1].z);return (L/1000).toFixed(1)}
@@ -1248,7 +1261,7 @@ function syncMesh(r,dt){
  u.wheels.forEach((w,i)=>{const wx=v.x+fx*w.z+lx*w.x,wz=v.z+fz*w.z+lz*w.x,pl=v.y+v.bob+w.z*Math.sin(v.pitch)+w.x*Math.sin(v.roll),tg=v.ground?clamp(height(wx,wz)-pl,-.35,.35):-.3;
   w.c+=(tg-w.c)*Math.min(1,dt*16);const fl=v.tyre[i]<.5;w.g.position.y=d.wr*(fl?.88:1)+w.c;w.t.scale.set(fl?.8:1,1,1);w.st.rotation.y=w.front?v.steer:0;w.sp.rotation.x=v.spin;w.wx=wx;w.wz=wz})}
 function startRace(){
- auInit();if(AU.ctx&&AU.ctx.state==="suspended")AU.ctx.resume();
+ auInit();applyMan();if(AU.ctx&&AU.ctx.state==="suspended")AU.ctx.resume();
  if(preview){scene.remove(preview);preview=null}liveries.length=0;racers.forEach(r=>scene.remove(r.mesh));racers=[];$("pause").hidden=true;$("viewBar").hidden=true;$("vName").hidden=true;
  const w1=ST.wps[1],h0=Math.atan2(w1.x,w1.z),fx=Math.sin(h0),fz=Math.cos(h0),lx=Math.cos(h0),lz=-Math.sin(h0);
  const nAI=sel.mode===2||sel.mode===4?0:Math.max(0,FIELDS[sel.field]-1),names=ARN.filter(n=>n!==PN()).sort(()=>Math.random()-.5),lite=nAI>7,alone=nAI===0;
@@ -1263,20 +1276,22 @@ function startRace(){
  cam.position.set(P.v.x-fx*14,P.v.y+5,P.v.z-fz*14);camYs=P.v.y;fpsAcc=0;fpsN=0;
 }
 function toMenu(){champ=null;coinIM.visible=false;$("pause").hidden=true;$("viewBar").hidden=true;$("vName").hidden=true;if(ghost){scene.remove(ghost);ghost=null}$("resetB").hidden=true;head.intensity=0;headOn=false;$("touch").classList.remove("show");state="menu";racers.forEach(r=>scene.remove(r.mesh));racers=[];P=null;$("hud").hidden=true;$("sys").hidden=true;$("end").hidden=true;$("menu").hidden=false;$("msg").textContent="";auOff();try{speechSynthesis.cancel()}catch(e){}placeBeam(1,false);showPreview()}
-$("pFS").hidden=!fsOK();$("pFS").onclick=toggleFS;$("rpB").onclick=startReplay;$("rpCam").onclick=()=>{rpAuto=false;rpCam=(rpCam+1)%5;rpTrack=null;rpCut=0};$("rpX").onclick=()=>{if(vidRec)vidRec.cancel=true;endReplay()};$("vidX").hidden=!vidOK();$("vidX").onclick=exportVideo;$("vidB").onclick=saveVid;$("vShot").onclick=e=>takePhoto(e.currentTarget);$("pShot").onclick=e=>takePhoto(e.currentTarget);
+$("pFS").hidden=!fsOK();$("pFS").onclick=toggleFS;$("pGear").onclick=()=>toggleMan(false);applyMan();$("rpB").onclick=startReplay;$("rpCam").onclick=()=>{rpAuto=false;rpCam=(rpCam+1)%5;rpTrack=null;rpCut=0};$("rpX").onclick=()=>{if(vidRec)vidRec.cancel=true;endReplay()};$("vidX").hidden=!vidOK();$("vidX").onclick=exportVideo;$("vidB").onclick=saveVid;$("vShot").onclick=e=>takePhoto(e.currentTarget);$("pShot").onclick=e=>takePhoto(e.currentTarget);
 $("go").onclick=()=>{if(sel.mode===3){const base=STAGES.map((o,i)=>i).filter(i=>!STAGES[i].daily),st=Math.max(0,base.indexOf(sel.track)),seq=[0,1,2,3].map(i=>base[(st+i)%base.length]);champ={k:0,seq,pts:{},roster:null};if(sel.track!==seq[0]){sel.track=seq[0];prepareStage()}}else champ=null;startRace()};$("nextB").onclick=()=>{if(!champ)return;champ.k++;sel.track=champ.seq[champ.k];$("end").hidden=true;prepareStage();startRace()};$("again").onclick=toMenu;$("bQuit").onclick=togglePause;$("pResume").onclick=togglePause;$("pRestart").onclick=()=>{$("pause").hidden=true;startRace()};$("pQuit").onclick=toMenu;$("viewBtn").onclick=enterView;$("vBack").onclick=exitView;$("shareB").onclick=shareResult;
 function togglePause(){if(state==="pause"){state=prevState;$("pause").hidden=true;last=performance.now()}else if(state==="run"||state==="count"||state==="done"){prevState=state;state="pause";$("pause").hidden=false;auOff();try{speechSynthesis.cancel()}catch(e){}}}
 $("resetB").onclick=resetToRoute;$("bMute").onclick=()=>{AU.on=!AU.on;$("bMute").textContent=AU.on?"🔊":"🔇";if(!AU.on){auOff();try{speechSynthesis.cancel()}catch(e){}}};
 $("bCam").onclick=()=>camMode=(camMode+1)%3;
-addEventListener("keydown",e=>{if(e.target&&e.target.tagName==="INPUT"&&e.target.type!=="color")return;keys[e.code]=1;if(e.code.startsWith("Arrow")||e.code==="Space")e.preventDefault();if(e.code==="KeyC"&&state!=="menu")camMode=(camMode+1)%3;if(e.code==="KeyM")$("bMute").click();if((e.code==="Escape"||e.code==="KeyP")&&state!=="menu"&&state!=="view")togglePause();if(e.code==="KeyF"&&fsOK()){toggleFS()}if(e.code==="KeyH")auHorn();if(e.code==="KeyL")headOn=!headOn;if(e.code==="KeyQ")resetToRoute()});
+addEventListener("keydown",e=>{if(e.target&&e.target.tagName==="INPUT"&&e.target.type!=="color")return;keys[e.code]=1;if(!e.repeat){if(e.code==="KeyE"||e.code==="ShiftRight")gq.u++;if(e.code==="KeyZ"||e.code==="ControlRight"||e.code==="KeyX")gq.d++;if(e.code==="KeyT"&&state!=="menu"&&state!=="view"&&state!=="replay")toggleMan(true)}if(e.code.startsWith("Arrow")||e.code==="Space")e.preventDefault();if(e.code==="KeyC"&&state!=="menu")camMode=(camMode+1)%3;if(e.code==="KeyM")$("bMute").click();if((e.code==="Escape"||e.code==="KeyP")&&state!=="menu"&&state!=="view")togglePause();if(e.code==="KeyF"&&fsOK()){toggleFS()}if(e.code==="KeyH")auHorn();if(e.code==="KeyL")headOn=!headOn;if(e.code==="KeyQ")resetToRoute()});
 addEventListener("keyup",e=>keys[e.code]=0);
 [["bL","L"],["bR","R"],["bG","G"],["bB","B"],["bH","H"]].forEach(([id,k])=>{const el=$(id),on=e=>{e.preventDefault();tin[k]=1;el.classList.add("on")},off=e=>{e.preventDefault();tin[k]=0;el.classList.remove("on")};el.addEventListener("pointerdown",on);["pointerup","pointercancel","pointerleave"].forEach(ev=>el.addEventListener(ev,off))});
+[["bGU","u"],["bGD","d"]].forEach(([id,k])=>{const el=$(id);el.addEventListener("pointerdown",e=>{e.preventDefault();gq[k]++;el.classList.add("on")});["pointerup","pointercancel","pointerleave"].forEach(ev=>el.addEventListener(ev,e=>{e.preventDefault();el.classList.remove("on")}))});
+let gpPrev=[0,0];
 $("rep").addEventListener("pointerdown",()=>rep.on=1);["pointerup","pointercancel","pointerleave"].forEach(ev=>$("rep").addEventListener(ev,()=>rep.on=0));
 
 function readInput(dt){
  let st=((keys.ArrowLeft||keys.KeyA||tin.L)?1:0)-((keys.ArrowRight||keys.KeyD||tin.R)?1:0),th=(keys.ArrowUp||keys.KeyW||tin.G)?1:0,br=(keys.ArrowDown||keys.KeyS||tin.B)?1:0,hb=(keys.Space||tin.H)?1:0,rp=keys.KeyR||rep.on;
- try{const g=navigator.getGamepads&&navigator.getGamepads()[0];if(g){const ax=g.axes[0]||0;if(Math.abs(ax)>.1)st=-ax;th=Math.max(th,g.buttons[7]?g.buttons[7].value:0,g.buttons[0]&&g.buttons[0].pressed?1:0);br=Math.max(br,g.buttons[6]?g.buttons[6].value:0);hb=hb||(g.buttons[1]&&g.buttons[1].pressed?1:0);rp=rp||(g.buttons[2]&&g.buttons[2].pressed)}}catch(e){}
- stIn+=(st-stIn)*Math.min(1,dt*(st===0?10:7));return{st:stIn,th,br,hb,rp}}
+ try{const g=navigator.getGamepads&&navigator.getGamepads()[0];if(g){const ax=g.axes[0]||0;if(Math.abs(ax)>.1)st=-ax;th=Math.max(th,g.buttons[7]?g.buttons[7].value:0,g.buttons[0]&&g.buttons[0].pressed?1:0);br=Math.max(br,g.buttons[6]?g.buttons[6].value:0);hb=hb||(g.buttons[1]&&g.buttons[1].pressed?1:0);rp=rp||(g.buttons[2]&&g.buttons[2].pressed);const u=g.buttons[5]&&g.buttons[5].pressed?1:0,d4=g.buttons[4]&&g.buttons[4].pressed?1:0;if(u&&!gpPrev[0])gq.u++;if(d4&&!gpPrev[1])gq.d++;gpPrev=[u,d4]}}catch(e){}
+ stIn+=(st-stIn)*Math.min(1,dt*(st===0?10:7));const gu=gq.u,gd=gq.d;gq.u=gq.d=0;return{st:stIn,th,br,hb,rp,gu,gd}}
 function rankScore(r){if(r.ai){return r.ai.done?1e9-(r.ft||0):r.ai.wi*1e5-Math.hypot(ST.wps[r.ai.wi].x-r.v.x,ST.wps[r.ai.wi].z-r.v.z)}return r===P&&pw>ST.wps.length-1?1e9-(r.ft||0):pw*1e5-Math.hypot(ST.wps[Math.min(pw,ST.wps.length-1)].x-P.v.x,ST.wps[Math.min(pw,ST.wps.length-1)].z-P.v.z)}
 function rankOf(){return racers.slice().sort((a,b)=>rankScore(b)-rankScore(a)).indexOf(P)+1}
 function announce(){const nt=ST.notes[pw-1];if(!nt)return;const d=Math.round(nt.dist/10)*10;say(`اتجاه ${Math.round(nt.cap)}، ${d} متر${nt.turn!=="مستقيم"?"، ثم "+nt.turn:""}${nt.warn?"، انتبه "+nt.warn:""}`)}
@@ -1376,6 +1391,7 @@ function frame(now){
  if(state==="replay"){replayFrame(dt);return}
  adaptRes(rawDt);
  const inp=readInput(dt);
+ P.v.man=MAN;if(MAN&&(state==="run"||state==="count")){for(let i=0;i<Math.min(inp.gu,2);i++)gearFx(P.v.shift(1));for(let i=0;i<Math.min(inp.gd,2);i++)gearFx(P.v.shift(-1))}
  if(state==="count"){cdown-=dt;const n=Math.ceil(cdown-.7);if(cdown>.7){if(n!==callN){callN=n;auBeep(520,.15,.3)}$("msg").textContent=n>0?n:""}else{state="run";$("msg").textContent="انطلق!";auBeep(980,.4,.35);setTimeout(()=>{if(state==="run")$("msg").textContent=""},800);announce()}}
  else if(state==="run")clock+=dt;
  const ns=Math.max(1,Math.ceil(dt/(1/55))),sdt=dt/ns;for(let i=0;i<ns;i++)step(sdt,inp);
