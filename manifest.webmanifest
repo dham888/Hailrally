@@ -1,6 +1,6 @@
 {
- "name": "رالي حائل",
- "short_name": "رالي حائل",
+ "name": "لعبة رالي حائل",
+ "short_name": "لعبة رالي حائل",
  "description": "لعبة رالي صحراوي ثلاثية الأبعاد - تصميم المهندس دهام عيد عبدالله الشمري",
  "lang": "ar",
  "dir": "rtl",
@@ -12,7 +12,7 @@
   "standalone"
  ],
  "orientation": "landscape",
- "background_color": "#1a1008",
+ "background_color": "#ffffff",
  "theme_color": "#1a1008",
  "icons": [
   {
@@ -28,7 +28,13 @@
    "purpose": "any"
   },
   {
-   "src": "icon-512.png",
+   "src": "icon-maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icon-maskable-512.png",
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"
